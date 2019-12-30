@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Species : MonoBehaviour
 {
-    public virtual void HelloWorld(Main main)
+    [SerializeField]
+    protected Main main;
+    protected virtual void Die()
+    {
+        main.buffer_remove[GetType()].Add(this);
+        Destroy(gameObject);
+        enabled = false;
+    }
+    public virtual void Simulate(float dt)
     {
 
     }
-    public virtual void Die()
-    {
-        DestroyImmediate(gameObject);
-    }
-    public virtual void Simulate()
-    {
 
+    public virtual float Eaten(float amount)
+    {
+        return 0;
     }
+
 }

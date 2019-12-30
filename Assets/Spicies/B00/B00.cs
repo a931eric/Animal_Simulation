@@ -6,29 +6,56 @@ using UnityEngine.UI;
 //grass
 public class B00 : Species
 {
-    public Main main;
-    public float maxHealth=100, health;
+
+
     public Image healthBar;
-    
-    public override void HelloWorld(Main main)
+
+    [System.Serializable]
+    public struct Properties
+    {
+        public float maxHealth;
+    }
+    [SerializeField]
+    protected Properties prop;
+
+    [System.Serializable]
+    public struct Status
+    {
+        public float health;
+    }
+    [SerializeField]
+    protected Status stat;
+
+
+    public void HelloWorld(Main main,Properties prop)
     {
         this.main = main;
-        main.B00s.Add(this);
-        base.HelloWorld(main);
-        health = maxHealth;
+        this.prop = prop;
+        main.all[GetType()].Add(this);
+        Status stat = new Status
+        {
+            health = prop.maxHealth
+        };
     }
-    public override void Simulate()
+    public override void Simulate(float dt)
     {
-        if (health <= 0) Die();
+        if (stat.health <= 0) Die();
+    }
+
+    protected override void Die()
+    {
+        base.Die();
     }
     public void Update()
     {
-        healthBar.fillAmount = health / maxHealth;
+        healthBar.fillAmount = stat.health / prop.maxHealth;
     }
-    public override void Die()
+    public override float Eaten(float amount)
     {
-        main.B00s.Remove(this);
-        base.Die();
-    }
+        if (amount > stat.health)
+            amount = stat.health;
 
+        stat.health -= amount;
+        return amount;
+    }
 }

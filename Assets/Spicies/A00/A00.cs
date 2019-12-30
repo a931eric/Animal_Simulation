@@ -4,29 +4,60 @@ using UnityEngine;
 using UnityEngine.UI;
 public class A00 : Species
 {
-    public Main main;
-    public float maxHealth = 100, health;
-    public Image healthBar;
+    public Image healthBar, saturationBar;
+    
+    [System.Serializable]
+    public struct Properties
+    {
+        public float maxHealth;
+        public float maxSaturation;
+        public float eatingSpeed;
+        public float radius;
+    }
+    [SerializeField]
+    protected Properties prop;
 
-    public override void HelloWorld(Main main)
+    [System.Serializable]
+    public struct Status
+    {
+        public float health;
+        public float saturation;
+        public B00 target;
+    }
+    [SerializeField]
+    protected Status stat;
+
+
+    public void HelloWorld(Main main, Properties prop)
     {
         this.main = main;
-        main.A00s.Add(this);
-        base.HelloWorld(main);
-        health = maxHealth;
+        this.prop = prop;
+        main.all[GetType()].Add(this);
+        Status stat = new Status
+        {
+            health = prop.maxHealth
+        };
     }
-    public override void Simulate()
+
+    protected override void Die()
     {
-        if (health <= 0) Die();
-        
+        base.Die();
     }
+
+    public override void Simulate(float dt)
+    {
+        if (stat.health <= 0) Die();
+        Eat(stat.target, prop.eatingSpeed*dt);
+    }
+
+    public void Eat(Species food, float amount)
+    {
+        stat.saturation +=food.Eaten(amount);
+    }
+
     public void Update()
     {
-        healthBar.fillAmount = health / maxHealth;
-    }
-    public override void Die()
-    {
-        main.A00s.Remove(this);
-        base.Die();
+        healthBar.fillAmount = stat.health / prop.maxHealth;
+        saturationBar.fillAmount = stat.saturation / prop.maxSaturation;
     }
 }
