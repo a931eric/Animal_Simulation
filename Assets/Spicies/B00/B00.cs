@@ -31,7 +31,7 @@ public class B00 : Species
     {
         this.main = main;
         this.prop = prop;
-        main.all[GetType()].Add(this);
+        main.allIndividuals[GetType()].Add(this);
         Status stat = new Status
         {
             health = prop.maxHealth
@@ -40,11 +40,6 @@ public class B00 : Species
     public override void Simulate(float dt)
     {
         if (stat.health <= 0) Die();
-    }
-
-    protected override void Die()
-    {
-        base.Die();
     }
     public void Update()
     {
