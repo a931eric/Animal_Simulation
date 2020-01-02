@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 0}
   bProp:
-    radius: 0.6
+    radius: 1
   healthBar: {fileID: 337289258303610971}
   saturationBar: {fileID: 1755479339545854451}
   prop:
@@ -56,12 +56,14 @@ MonoBehaviour:
     maxSaturation: 100
     eatingSpeed: 1
     sightAngle: 3
-    sightResolution: 7
-    speed: 0.2
+    sightResolution: 5
+    speed: 0.4
+    m: 1
   stat:
     health: 100
     saturation: 0
-    direction: {x: 1, y: 0}
+    direction: {x: -1, y: 0}
+  rotLerp: 0.1
 --- !u!1 &337289258303610969
 GameObject:
   m_ObjectHideFlags: 0

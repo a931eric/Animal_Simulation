@@ -16,7 +16,7 @@ public class B00 : Species
         public float maxHealth;
     }
     [SerializeField]
-    protected Properties prop;
+    public Properties prop; 
 
     [System.Serializable]
     public struct Status
