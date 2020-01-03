@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3610878530103203825}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 4340305762016214531}
@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 4340305762016214540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 3044741137253497678}
   - {fileID: 4340305762178495673}
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 0}
   bProp:
-    radius: 0.5
+    radius: 1
   healthBar: {fileID: 4340305761629577859}
   prop:
     maxHealth: 50

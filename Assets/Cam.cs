@@ -6,12 +6,6 @@ public class Cam : MonoBehaviour
 {
     public GameObject target;
     public float posLerp=0.99f, rotLerp=0.99f;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position, target.transform.position, posLerp);

@@ -160,6 +160,5 @@ class Data2D
     public void Set(float x, float y, bool value)
     {
         data[(int)((x0 + x) * xk), (int)((y0 + y) * yk)] = value;
-        Debug.Log(((x0 + x) * xk) + "," + ((y0 + y) * yk));
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class A00 : Species
 {
     public Image healthBar, saturationBar;
-    
+    public bool controledByPlayer = false;
     [System.Serializable]
     public struct Properties
     {
@@ -45,15 +45,24 @@ public class A00 : Species
     public override void Simulate(float dt)
     {
         if (stat.health <= 0) Die();
+        if (controledByPlayer)
+        {
+
+        }
+
         float[] detectB00 = main.DetectSpecies(typeof(B00),main.v2( transform.position),stat.direction,prop.sightAngle,prop.sightResolution);
-        float[] detectObstacle = main.DetectObstacle( main.v2(transform.position), stat.direction, prop.sightAngle, prop.sightResolution); 
-        
-        if (!Eat(typeof(B00), dt))
+        float[] detectObstacle = main.DetectObstacle( main.v2(transform.position), stat.direction, prop.sightAngle, prop.sightResolution);
+
+        if (Eat(typeof(B00), dt))
+        {
+            Movement = 1;
+        }
+        else
         {
             Vector2 dir=new Vector2(0,0);
             for(int i = 0; i < prop.sightResolution; i++)
             {
-                dir += main.Rotate(stat.direction, -prop.sightAngle / prop.sightResolution * (i - prop.sightResolution / 2.0f + .5f))*(-detectObstacle[i]+100*detectB00[i]);
+                dir += main.Rotate(stat.direction, -prop.sightAngle / prop.sightResolution * (i - prop.sightResolution / 2.0f + .5f))*(-detectObstacle[i]+10*detectB00[i]);
             }
             dir +=stat.direction*prop.m;
             dir.Normalize();
@@ -61,7 +70,9 @@ public class A00 : Species
 
             stat.direction = main.Rotate(dir, Random.Range(0.3f, -0.3f) * dt);
             //stat.direction = dir;
-            Move(dt);
+            if (Move(dt))
+                Movement = 0;
+            else Movement = 2;
         }
     }
     
@@ -90,10 +101,13 @@ public class A00 : Species
     }
 
     public float rotLerp = 0.01f;
+    public Animator animator;
+    int Movement=0;
     public void Update()
     {
         transform.LookAt(transform.position +main.v3(stat.direction)*rotLerp+transform.forward*(1-rotLerp));
         healthBar.fillAmount = stat.health / prop.maxHealth;
         saturationBar.fillAmount = stat.saturation / prop.maxSaturation;
+        animator.SetInteger("movement id", Movement);
     }
 }

@@ -6,13 +6,15 @@ using UnityEngine.UI;
 //grass
 public class B00 : Species
 {
-
-
     public Image healthBar;
 
     [System.Serializable]
     public struct Properties
     {
+        public struct Controlled
+        {
+            public float abc;
+        }
         public float maxHealth;
     }
     [SerializeField]
