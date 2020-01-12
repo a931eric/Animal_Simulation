@@ -6,13 +6,8 @@ public class Species : MonoBehaviour
 {
     [SerializeField]
     protected Main main;
+    public float radius;
 
-    [System.Serializable]
-    public struct BaseProperties
-    {
-        public float radius;
-    }
-    public BaseProperties bProp;
 
     protected virtual void Die()
     {

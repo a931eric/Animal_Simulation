@@ -271,8 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   main: {fileID: 0}
-  bProp:
-    radius: 1
+  radius: 1.1
   healthBar: {fileID: 4340305761629577859}
   prop:
     maxHealth: 50

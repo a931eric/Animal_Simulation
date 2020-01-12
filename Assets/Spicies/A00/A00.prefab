@@ -47,22 +47,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   main: {fileID: 0}
-  bProp:
-    radius: 1
+  radius: 1
   healthBar: {fileID: 337289258303610971}
   saturationBar: {fileID: 1755479339545854451}
-  prop:
-    maxHealth: 100
-    maxSaturation: 100
-    eatingSpeed: 0.4
-    sightAngle: 3
-    sightResolution: 5
-    speed: 0.4
-    m: 1
+  controledByPlayer: 0
   stat:
     health: 100
     saturation: 0
     direction: {x: -1, y: 0}
+  dna:
+    staticGene:
+      maxHealth: 100
+      maxSaturation: 100
+      eatingSpeed: 0.2
+      sightAngle: 3
+      sightResolution: 5
+      speed: 0.2
+    gene:
+      m: 1
   rotLerp: 0.1
   animator: {fileID: 362838874510128079}
 --- !u!1 &337289258303610969
